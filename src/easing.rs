@@ -13,6 +13,8 @@ fn f<T: Float>(x: f64) -> T {
     T::from(x).expect("Type must be f32 or f64")
 }
 
+/// linear easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -21,6 +23,8 @@ pub fn linear<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     c * t / d + b
 }
 
+/// back_in easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -31,6 +35,8 @@ pub fn back_in<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     c * t * t * ((s + f(1.0)) * t - s) + b
 }
 
+/// back_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -41,6 +47,8 @@ pub fn back_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     c * (t * t * ((s + f(1.0)) * t + s) + f(1.0)) + b
 }
 
+/// back_in_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -58,6 +66,8 @@ pub fn back_in_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     }
 }
 
+/// bounce_in easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -66,6 +76,8 @@ pub fn bounce_in<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     c - bounce_out(d - t, f(0.0), c, d) + b
 }
 
+/// bounce_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -89,6 +101,8 @@ pub fn bounce_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     }
 }
 
+/// bounce_in_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -101,6 +115,8 @@ pub fn bounce_in_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     }
 }
 
+/// circ_in easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -110,6 +126,8 @@ pub fn circ_in<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     -c * ((T::one() - t * t).sqrt() - f(1.0)) + b
 }
 
+/// circ_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -119,6 +137,8 @@ pub fn circ_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     c * (T::one() - t * t).sqrt() + b
 }
 
+/// circ_in_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -133,6 +153,8 @@ pub fn circ_in_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     }
 }
 
+/// cubic_in easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -142,6 +164,8 @@ pub fn cubic_in<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     c * (t * t * t) + b
 }
 
+/// cubic_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -151,6 +175,8 @@ pub fn cubic_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     c * ((t * t * t) + f(1.0)) + b
 }
 
+/// cubic_in_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -165,6 +191,8 @@ pub fn cubic_in_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     }
 }
 
+/// elastic_in easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -190,6 +218,8 @@ pub fn elastic_in<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     -(post_fix * temp.sin()) + b
 }
 
+/// elastic_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -213,6 +243,8 @@ pub fn elastic_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     a * _2.powf(-_10 * t) * temp.sin() + c + b
 }
 
+/// elastic_in_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -246,6 +278,8 @@ pub fn elastic_in_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     post_fix * temp.sin() * f(0.5) + c + b
 }
 
+/// expo_in easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -260,6 +294,8 @@ pub fn expo_in<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     }
 }
 
+/// expo_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -274,6 +310,8 @@ pub fn expo_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     }
 }
 
+/// expo_in_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -296,6 +334,8 @@ pub fn expo_in_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     }
 }
 
+/// quad_in easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -305,6 +345,8 @@ pub fn quad_in<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     c * t * t + b
 }
 
+/// quad_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -314,6 +356,8 @@ pub fn quad_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     -c * t * (t - f(2.0)) + b
 }
 
+/// quad_in_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -328,6 +372,8 @@ pub fn quad_in_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     }
 }
 
+/// quart_in easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -337,6 +383,8 @@ pub fn quart_in<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     c * (t * t * t * t) + b
 }
 
+/// quart_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -346,6 +394,8 @@ pub fn quart_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     -c * ((t * t * t * t) - f(1.0)) + b
 }
 
+/// quart_in_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -360,6 +410,8 @@ pub fn quart_in_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     }
 }
 
+/// quint_in easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -369,6 +421,8 @@ pub fn quint_in<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     c * (t * t * t * t * t) + b
 }
 
+/// quint_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -378,6 +432,8 @@ pub fn quint_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     c * ((t * t * t * t * t) + f(1.0)) + b
 }
 
+/// quint_in_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -392,6 +448,8 @@ pub fn quint_in_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     }
 }
 
+/// sine_in easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -400,6 +458,8 @@ pub fn sine_in<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     -c * (t / d * (T::PI() / f(2.0))).cos() + c + b
 }
 
+/// sine_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
@@ -408,6 +468,8 @@ pub fn sine_out<T: Float + FloatConst>(t: T, b: T, c: T, d: T) -> T {
     c * (t / d * (T::PI() / f(2.0))).sin() + b
 }
 
+/// sine_in_out easing
+///
 /// * `t` - the progress of the tween, ranging from 0 to d.
 /// * `b` - the starting value of the property.
 /// * `c` - the change between the starting and ending value of the property.
