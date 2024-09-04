@@ -10,7 +10,7 @@ homepage="https://github.com/petergilmour1987/nice_and_easy"
 repository="https://github.com/petergilmour1987/nice_and_easy"
 keywords=["easing","animation","tween","maths","math"]
 readme = "README.md"
-categories = ["algorithms", "mathematics", "games", "ui", "graphics"]
+categories = ["algorithms", "mathematics", "game-development", "gui", "graphics"]
 
 [dependencies]
 num-traits = "0.2.19"
