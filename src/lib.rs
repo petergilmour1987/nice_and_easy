@@ -28,7 +28,7 @@
 //!     let starting_value: f32 = 0.0;
 //!     let target: f32 = 2.0;
 //!     let duration: f32 = 1.0;
-//!     let value: f32 = Sine::ease_in_out(progress, starting_value, target, duration);
+//!     let value: f32 = sine_in_out(progress, starting_value, target, duration);
 //!     assert_eq!(value, 1.0);
 //!
 //!     // ...or f64
@@ -36,35 +36,12 @@
 //!     let starting_value: f64 = 0.0;
 //!     let target: f64 = 2.0;
 //!     let duration: f64 = 1.0;
-//!     let value: f64 = Quad::ease_in_out(progress, starting_value, target, duration);
+//!     let value: f64 = quad_in_out(progress, starting_value, target, duration);
 //!     assert_eq!(value, 1.0);
 //! }
 //!
 //! ```
 
-pub use self::back::Back;
-pub use self::bounce::Bounce;
-pub use self::circ::Circ;
-pub use self::cubic::Cubic;
-pub use self::ease::Easing;
-pub use self::elastic::Elastic;
-pub use self::expo::Expo;
-pub use self::linear::Linear;
-pub use self::quad::Quad;
-pub use self::quart::Quart;
-pub use self::quint::Quint;
-pub use self::sine::Sine;
+mod easing;
 
-mod back;
-mod bounce;
-mod circ;
-mod cubic;
-mod ease;
-mod elastic;
-mod expo;
-mod linear;
-mod quad;
-mod quart;
-mod quint;
-mod sine;
-mod util;
+pub use easing::*;
