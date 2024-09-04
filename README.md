@@ -19,8 +19,6 @@ For visualizing these functions, you can use the website <https://easings.net>
 - c is the change between the starting and ending value of the property.
 - d is the total duration
 
-# example
-
 ```rust
 use nice_and_easy::*;
 

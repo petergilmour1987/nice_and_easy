@@ -19,8 +19,6 @@
 //! - c is the change between the starting and ending value of the property.
 //! - d is the total duration
 //!
-//! # example
-//!
 //! ```rust
 //! use nice_and_easy::*;
 //!
