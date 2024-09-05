@@ -1,8 +1,4 @@
-name: Release-plz
-
-permissions:
-  pull-requests: write
-  contents: write
+name: Publish Crate
 
 on:
   push:
@@ -10,24 +6,33 @@ on:
       - main
 
 jobs:
-  release-plz:
-    name: Release-plz
+  test-and-publish:
+    if: github.actor != 'github-actions' # Avoid recursive runs
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
+
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
         with:
-          fetch-depth: 0
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
+          toolchain: stable
+          override: true
+
       - name: Run cargo check
         run: cargo check
+
       - name: Run cargo test
         run: cargo test
-      - name: Run release-plz
-        uses: MarcoIeni/release-plz-action@v0.5
-        with:
-          command: release
+
+      - name: Install cargo-release
+        run: cargo install cargo-release
+
+      - name: Bump version and publish
+        run: cargo release patch --no-verify --no-confirm --execute
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+
