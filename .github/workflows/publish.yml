@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'Cargo.toml'
-      - 'src/**'
 
 jobs:
   test-and-publish:
@@ -33,6 +30,6 @@ jobs:
         run: cargo install cargo-release
 
       - name: Bump version
-        run: cargo release patch --no-confirm
+        run: cargo release patch --no-confirm --execute
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
