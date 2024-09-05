@@ -1,0 +1,21 @@
+[workspace]
+allow_dirty = true # allow updating repositories with uncommitted changes
+changelog_update = false # disable changelog updates
+dependencies_update = false # update dependencies with `cargo update`
+git_release_enable = true # disable GitHub/Gitea releases
+pr_labels = ["release"] # add the `release` label to the release Pull Request
+publish_allow_dirty = false # add `--allow-dirty` to `cargo publish`
+semver_check = false # disable API breaking changes checks
+publish_timeout = "10m" # set a timeout for `cargo publish`
+# release_commits = "^feat:" # prepare release only if at least one commit matches a regex
+
+[[package]] # the double square brackets define a TOML table array
+name = "nice_and_easy"
+# changelog_include = ["package_b"] # include commits from `package_b` in the changelog
+# changelog_path = "docs/CHANGELOG.md" # use a custom changelog path for `package_a`
+# changelog_update = true # enable changelog update for `package_a`
+# git_release_enable = true # enable GitHub/Gitea releases for `package_a`
+publish = true # disable `cargo publish` for `package_a`
+
+# [changelog]
+# protect_breaking_commits = true # always include commits with breaking changes in the changelog
