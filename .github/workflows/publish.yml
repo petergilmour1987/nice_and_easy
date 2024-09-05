@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   test-and-publish:
     if: github.actor != 'github-actions' # Avoid recursive runs
