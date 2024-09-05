@@ -1,0 +1,43 @@
+name: Publish Crate
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Cargo.toml'
+      - 'src/**'
+
+jobs:
+  test-and-publish:
+    if: github.actor != 'github-actions' # Avoid recursive runs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Run cargo check
+        run: cargo check
+
+      - name: Run cargo test
+        run: cargo test
+
+      - name: Install cargo-release
+        run: cargo install cargo-release
+
+      - name: Bump version
+        run: cargo release patch --no-confirm --no-publish
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+      - name: Publish to crates.io
+        run: cargo publish
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
