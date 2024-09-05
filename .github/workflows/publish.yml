@@ -10,7 +10,6 @@ on:
 
 jobs:
   test-and-publish:
-    if: github.actor != 'github-actions' # Avoid recursive runs
     runs-on: ubuntu-latest
 
     steps:
