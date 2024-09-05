@@ -14,6 +14,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Set up Git
+        run: |
+          git config --global user.name "petergilmour1987"
+          git config --global user.email "petergilmour1987@gmail.com"
+
       - name: Set up Rust
         uses: actions-rs/toolchain@v1
         with:
