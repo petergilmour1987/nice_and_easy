@@ -1,4 +1,8 @@
-name: Publish Crate
+name: Release-plz
+
+permissions:
+  pull-requests: write
+  contents: write
 
 on:
   push:
@@ -6,35 +10,24 @@ on:
       - main
 
 jobs:
-  test-and-publish:
-    if: github.actor != 'github-actions' # Avoid recursive runs
+  release-plz:
+    name: Release-plz
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Git
-        run: |
-          git config --global user.name "Release BOT"
-          git config --global user.email "petergilmour1987@gmail.com"
-
-      - name: Set up Rust
-        uses: actions-rs/toolchain@v1
+        uses: actions/checkout@v4
         with:
-          toolchain: stable
-          override: true
-
+          fetch-depth: 0
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
       - name: Run cargo check
         run: cargo check
-
       - name: Run cargo test
         run: cargo test
-
-      - name: Install cargo-release
-        run: cargo install cargo-release
-
-      - name: Bump version
-        run: cargo release patch --no-confirm --execute
+      - name: Run release-plz
+        uses: MarcoIeni/release-plz-action@v0.5
+        with:
+          command: release
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
